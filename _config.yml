@@ -1,6 +1,6 @@
 # Site settings
 title: MYChen's Blog
-description: '读研在科大' # this means to ignore newlines until "baseurl:"
+description: '科大读研记录' # this means to ignore newlines until "baseurl:"
 permalink: ':title:output_ext'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://ustc-cmy.github.io" # the base hostname & protocol for your site, e.g. http://example.com
