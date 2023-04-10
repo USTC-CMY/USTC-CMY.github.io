@@ -17,7 +17,7 @@ For the seemingly small project I undertook of [creating a machine learning neur
 And since my original post for the TicTacToe project is quite large already, I decided to post separately these optimization methods and how did I implement them in my code.
 
 ### Adam
-[source](https://ruder.io/optimizing-gradient-descent/index.html#adam)
+[source](https://www.ruder.io/optimizing-gradient-descent/#adam)
 
 <p>Adaptive Moment Estimation (Adam) is an optimization method that computes adaptive learning rates for each weight and bias. In addition to storing an exponentially decaying average of past squared gradients \(v_t\) and an exponentially decaying average of past gradients \(m_t\), similar to momentum. Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface. We compute the decaying averages of past and past squared gradients \(m_t\) and \(v_t\) respectively as follows:</p>
 <p style="text-align:center">\(<br>
@@ -89,7 +89,7 @@ self.bias[i] -= ((eta * (self.v["db" + str(i)]
 ```
 
 ### SGD Momentum
-[source](https://ruder.io/optimizing-gradient-descent/index.html#momentum)
+[source](https://www.ruder.io/optimizing-gradient-descent/#momentum)
 
 <p>Vanilla SGD has trouble navigating ravines, i.e. areas where the surface curves much more steeply in one dimension than in another, which are common around local optima. In these scenarios, SGD oscillates across the slopes of the ravine while only making hesitant progress along the bottom towards the local optimum.</p>
 <p>Momentum is a method that helps accelerate SGD in the relevant direction and dampens oscillations. It does this by adding a fraction \(\gamma\) of the update vector of the past time step to the current update vector:</p>
@@ -118,7 +118,7 @@ self.bias[i] -= self.v["db" + str(i)]
 ```
 
 ### Nesterov accelerated gradient (NAG)
-[source](https://ruder.io/optimizing-gradient-descent/index.html#nesterovacceleratedgradient)
+[source](https://www.ruder.io/optimizing-gradient-descent/#nesterovacceleratedgradient)
 
 <p>However, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We'd like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again.</p>
 <p>Nesterov accelerated gradient (NAG) is a way to give our momentum term this kind of prescience. We know that we will use our momentum term \(\beta_1 v_{t-1}\) to move the weights and biases \(\theta\). Computing \( \theta - \beta_1 v_{t-1} \) thus gives us an approximation of the next position of the weights and biases (the gradient is missing for the full update), a rough idea where our weights and biases are going to be. We can now effectively look ahead by calculating the gradient not w.r.t. to our current weights and biases \(\theta\) but w.r.t. the approximate future position of our weights and biases:</p>
@@ -152,7 +152,7 @@ self.bias[i] += ((-1 * c.BETA1 * v_prev["db" + str(i)])
 ```
 
 ### RMSprop
-[source](https://ruder.io/optimizing-gradient-descent/index.html#rmsprop)
+[source](https://www.ruder.io/optimizing-gradient-descent/#rmsprop)
 
 <p>RMSprop is an unpublished, adaptive learning rate method proposed by Geoff Hinton in <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">Lecture 6e of his Coursera Class</a>.</p>
 <p>RMSprop was developed stemming from the need to resolve other method's radically diminishing learning rates.</p>
