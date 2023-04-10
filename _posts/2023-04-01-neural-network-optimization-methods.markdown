@@ -3,7 +3,7 @@ layout: post
 read_time: true
 show_date: true
 title:  Neural Network Optimization Methods and Algorithms
-date:   2023-01-01 10:16:00 -0600
+date:   2023-04-01 10:16:00 -0600
 description: Some neural network optimization algorithms mostly to implement momentum when doing back propagation.
 img: posts/20230401/nnet_optimization.jpg
 tags: [coding, machine learning, optimization, deep Neural networks]
