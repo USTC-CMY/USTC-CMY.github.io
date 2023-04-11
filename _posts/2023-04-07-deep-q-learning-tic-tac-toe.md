@@ -3,15 +3,15 @@ layout: post
 read_time: true
 show_date: true
 title:  Deep Q Learning for Tic Tac Toe
-date:   2023-04-13 15:14:20 -0600
+date:   2023-04-07 15:14:20 -0600
 description: "Inspired by Deep Mind's astonishing feats of having their Alpha Go, Alpha Zero and Alpha Star programs learn (and be amazing at it) Go, Chess, Atari games and lately Starcraft; I set myself to the task of programming a neural network that will learn by itself how to play the ancient game of tic tac toe. How hard could it be?"
-img: posts/20230413/TicTacToeSml.jpg
+img: posts/20230407/TicTacToeSml.jpg
 tags: [machine learning, artificial intelligence, reinforcement learning, coding, python]
 author: MY Chen
 github: amaynez/TicTacToe/
 toc: yes # leave empty or erase for no TOC
 ---
-<center><img style="float: left;margin-right: 1em;" src='../assets/img/posts/20230413/Game_Screen.png' width="310" height="300"></center>
+<center><img style="float: left;margin-right: 1em;" src='../assets/img/posts/20230407/Game_Screen.png' width="310" height="300"></center>
 
 ## Background
 After many years of a corporate career (17) diverging from computer science, I have now decided to learn Machine Learning and in the process return to coding (something I have always loved!).
@@ -36,7 +36,7 @@ Now, for the fun part, training the network, I followed Deep Mind's own DQN reco
 
 ## Designing the neural network
 
-<center><img src='../assets/img/posts/20230413/Neural_Network_Topology.png' width="540"></center><br>
+<center><img src='../assets/img/posts/20230407/Neural_Network_Topology.png' width="540"></center><br>
 
 The Neural Network chosen takes 9 inputs (the current state of the game) and outputs 9 Q values for each of the 9 squares in the board of the game (possible actions). Obviously some squares are illegal moves, hence while training there was a negative reward given to illegal moves hoping that the model would learn not to play illegal moves in a given position.
 
@@ -47,16 +47,17 @@ I started out with two hidden layers of 36 neurons each, all fully connected and
 
 At first the model was trained by playing vs. a "perfect" AI, meaning a [hard coded algorithm](https://github.com/amaynez/TicTacToe/blob/b429e5637fe5f61e997f04c01422ad0342565640/entities/Game.py#L43) that never looses and that will win if it is given the chance. After several thousand training rounds, I noticed that the Neural Network was not learning much; so I switched to training vs. a completely random player, so that it will also learn how to win. After training vs. the random player, the Neural Network seems to have made progress and is steadily diminishing the loss function over time.
 
-<center><img src='../assets/img/posts/20230413/Loss_function_across_all_episodes.png' width="540"></center><br>
+<center><img src='../assets/img/posts/20230407/Loss_function_across_all_episodes.png' width="540"></center><br>
 
 However, the model was still generating many illegal moves, so I decided to modify the reinforcement learning algorithm to punish more the illegal moves. The change consisted in populating with zeros all the corresponding illegal moves for a given position at the target values to train the network. This seemed to work very well for diminishing the illegal moves:
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves.png' width="540"></center><br>
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves.png' width="540"></center><br>
 
 Nevertheless, the model was still performing quite poorly winning only around 50% of games vs. a completely random player (I expected it to win above 90% of the time). This was after only training 100,000 games, so I decided to keep training and see the results:
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves2.png' width="540">
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves2.png' width="540">
 <small>Wins: 65.46% Losses: 30.32% Ties: 4.23%</small></center>
+
 
 
 
@@ -64,8 +65,9 @@ Note that when training restarts, the loss and illegal moves are still high in t
 
 After another round of 100,000 games, I can see that the loss function actually started to diminish, and the win rate ended up at 65%, so with little hope I decided to carry on and do another round of 100,000 games (about 2 hours in an i7 MacBook Pro):
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves3.png' width="540">
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves3.png' width="540">
 <small>Wins: 46.40% Losses: 41.33% Ties: 12.27%</small></center>
+
 
 
 
@@ -75,8 +77,9 @@ As you can see in the chart, the calculated loss not even plateaued, but it seem
 
 After not getting the results I wanted, I decided to change the output activation function to linear, since the output is supposed to be a Q value, and not a probability of an action.
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves4.png' width="540"><br>
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves4.png' width="540"><br>
 <small>Wins: 47.60% Losses: 39% Ties: 13.4%</small></center><br>
+
 
 
 
@@ -84,12 +87,13 @@ Initially I tested with only 1000 games to see if the new activation function wa
 
 With the cycling learning rate in place, still no luck after a quick 1,000 games training round; so I decided to implement on top a decaying learning rate as per the following formula:
 
-<center><img src='../assets/img/posts/20230413/lr_formula.jpeg' width="280"></center>
+<center><img src='../assets/img/posts/20230407/lr_formula.jpeg' width="280"></center>
 
 The resulting learning rate combining the cycles and decay per epoch is:
-<center><img src='../assets/img/posts/20230413/LR_cycle_decay.png' width="480">
+<center><img src='../assets/img/posts/20230407/LR_cycle_decay.png' width="480">
 <small>Learning Rate = 0.1, Decay = 0.0001, Cycle = 2048 epochs,<br>
         max Learning Rate factor = 10x</small></center>
+
 
 
 
@@ -113,9 +117,10 @@ c.LR_STEP_SIZE = the number of epochs each cycle lasts
 ```
 <br>With these many changes, I decided to restart with a fresh set of random weights and biases and try training more (much more) games.
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves6.png' width="540">
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves6.png' width="540">
 <small>1,000,000 episodes, 7.5 million epochs with batches of 64 moves each<br>
 Wins: 52.66% Losses: 36.02% Ties: 11.32%</small></center>
+
 
 After **24 hours!**, my computer was able to run 1,000,000 episodes (games played), which represented 7.5 million training epochs of batches of 64 plays (480 million plays learned), the learning rate did decreased (a bit), but is clearly still in a plateau; interestingly, the lower boundary of the loss function plot seems to continue to decrease as the upper bound and the moving average remains constant. This led me to believe that I might have hit a local minimum.
 <a name='Model3'></a>
@@ -124,20 +129,22 @@ After **24 hours!**, my computer was able to run 1,000,000 episodes (games playe
 
 After all the failures I figured I had to rethink the topology of the network and play around with combinations of different networks and learning rates.
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves7.png' width="540">
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves7.png' width="540">
 <small>100,000 episodes, 635,000 epochs with batches of 64 moves each<br>
 <b>Wins: 76.83%</b> Losses: 17.35% Ties: 5.82%</small></center>
 
 
 
+
 I increased to 200 neurons each hidden layer. In spite of this great improvement the loss function was still in a plateau at around 0.1 (Mean Squared Error). Which, although it is greatly reduced from what we had, still was giving out only 77% win rate vs. a random player, the network was playing tic tac toe as a toddler!
 
-<center><img src='../assets/img/posts/20230413/Game_Screen2.png' width="240" height="240">
+<center><img src='../assets/img/posts/20230407/Game_Screen2.png' width="240" height="240">
 <small>*I can still beat the network most of the time! (I am playing with the red X)*</small></center>
 
-<center><img src='../assets/img/posts/20230413/Loss_function_and_Illegal_moves10.png' width="540">
+<center><img src='../assets/img/posts/20230407/Loss_function_and_Illegal_moves10.png' width="540">
 <small>100,000 more episodes, 620,000 epochs with batches of 64 moves each<br>
 <b>Wins: 82.25%</b> Losses: 13.28% Ties: 4.46%</small></center>
+
 
 
 
@@ -147,7 +154,7 @@ After more training rounds and some experimenting with the learning rate and oth
 
 These have been the results so far:
 
-<center><img src='../assets/img/posts/20230413/Models1to3.png' width="540"></center>
+<center><img src='../assets/img/posts/20230407/Models1to3.png' width="540"></center>
 
 <br>
 
@@ -184,7 +191,7 @@ So far, I have not been able to get better results with Model 4, I have tried al
 ### Model 5 - implementing one-hot encoding and changing topology (again)
 I came across an [interesting project in Github](https://github.com/AxiomaticUncertainty/Deep-Q-Learning-for-Tic-Tac-Toe/blob/master/tic_tac_toe.py) that deals exactly with Deep Q Learning, and I noticed that he used "one-hot" encoding for the input as opposed to directly entering the values of the player into the 9 input slots. So I decided to give it a try and at the same time change my topology to match his:
 
-<center><img src='../assets/img/posts/20230413/Neural_Network_Topology3.png' width="540"></center>
+<center><img src='../assets/img/posts/20230407/Neural_Network_Topology3.png' width="540"></center>
 
 So, 'one hot' encoding is basically changing the input of a single square in the tic tac toe board to three numbers, so that each state is represented with different inputs, thus the network can clearly differentiate the three of them. As the original author puts it, the way I was encoding, having 0 for empty, 1 for X and 2 for O, the network couldn't easily tell that, for instance, O and X both meant occupied states, because one is two times as far from 0 as the other. With the new encoding, the empty state will be 3 inputs: (1,0,0), the X will be (0,1,0) and the O (0,0,1) as in the diagram.
 
@@ -246,7 +253,7 @@ The way I was training initially was:
 - Every move from either player generates a new training round, again with a random sample from the replay memory.
 - This continues until the number of games set up conclude.
 
-<center><img src='../assets/img/posts/20230413/ReplayMemoryBefore.png' width="540"></center>
+<center><img src='../assets/img/posts/20230407/ReplayMemoryBefore.png' width="540"></center>
 
 The first change was to train only after every game concludes with the same ammount of data (a batch). This was still not giving any good results.
 
@@ -254,13 +261,14 @@ The second change was more drastic, it introduced the concept of epochs for ever
 
 This meant that I was training now effectively 10 (or the number of epochs selected) times more per game, but in batches of the same size and randomly shuffling the experiences each epoch.
 
-<center><img src='../assets/img/posts/20230413/ReplayMemoryAfter.png' width="540"></center><br>
+<center><img src='../assets/img/posts/20230407/ReplayMemoryAfter.png' width="540"></center><br>
 
 After still playing around with some hyperparameters I managed to get similar performance as I got before, reaching 83.15% win rate vs. the random player, so I decided to keep training in rounds of 2,000 games each to evaluate performance. With almost every round I could see improvement:
 
-<center><img src='../assets/img/posts/20230413/Model7HyperParameters.png' width="540"><br>
-<img src='../assets/img/posts/20230413/Model7.png' width="480">
+<center><img src='../assets/img/posts/20230407/Model7HyperParameters.png' width="540"><br>
+<img src='../assets/img/posts/20230407/Model7.png' width="480">
 </center><br>
+
 
 
 
