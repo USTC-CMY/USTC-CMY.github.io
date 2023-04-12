@@ -17,26 +17,26 @@ author: MY Chen
 
 自我孤立、画地为牢、建起围墙、紧闭大门、打开电脑、骗自己已成功替换了现实社交联系。
 
-<img src="F:\BaiduSyncdisk\桌面\github\USTC-CMY.github.io\_posts\2023-04-12-.assets\island.png" style="zoom: 50%;" />
+![](../assets/img/posts/20230412/island.png)
 
 ## 过于认真、小题大做、杞人忧天
 
 让自己变得煞气腾腾，遥远不可亲近，与讨厌的人远离
 
-<img src="F:\BaiduSyncdisk\桌面\github\USTC-CMY.github.io\_posts\2023-04-12-.assets\seriously.png" style="zoom:50%;" />
+![](../assets/img/posts/20230412/seriously.png)
 
 ## 缅怀过去、忧虑未来
 
-<img src="F:\BaiduSyncdisk\桌面\github\USTC-CMY.github.io\_posts\2023-04-12-.assets\past_present_future.png" style="zoom:50%;" />
+![](../assets/img/posts/20230412/past_present_future.png)
 
 ## 把所有目标抛之脑后，使自己完全失去方向
 
 SMART（Specific、Measurable、Actionable、Realistic and Time-Defined）VAPID（Vague、Amorphous、Pie in the sky、Irrelevant and Delayed），只关注最终目标，而不关注脚下的每一步，兴趣丧失、士气低落
 
-<img src="F:\BaiduSyncdisk\桌面\github\USTC-CMY.github.io\_posts\2023-04-12-.assets\goal.png" style="zoom:50%;" />
+![](../assets/img/posts/20230412/goal.png)
 
 ## 让恐惧麻痹自己，永远不离开舒适区
 
 不去改变自己的生活，停止进步、停止渴望更多，只是坐等天上掉馅饼，只是坐等时间消磨。
 
-<img src="F:\BaiduSyncdisk\桌面\github\USTC-CMY.github.io\_posts\2023-04-12-.assets\scared.png" style="zoom:50%;" />
+![](../assets/img/posts/20230412/scared.png)
