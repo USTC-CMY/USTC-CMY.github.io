@@ -4,7 +4,7 @@ read_time: true
 show_date: true
 title: 如何悲惨的度过一生
 date: 2023-4-12
-img: posts/20230412/miserhow_to_be_miserable.png
+img: posts/20230412/how_to_be_miserable.png
 tags: [truth]
 author: MY Chen
 ---
