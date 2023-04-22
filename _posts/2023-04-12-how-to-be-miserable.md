@@ -9,8 +9,6 @@ tags: [truth]
 author: MY Chen
 ---
 
-# 如何悲惨的度过一生
-
 [video](https://www.bilibili.com/video/BV17P4y127ub/?is_story_h5=false&p=1&share_from=ugc&share_medium=android&share_plat=android&share_session_id=7c95183a-8058-4728-b2cd-bc82f416b3e1&share_source=WEIXIN&share_tag=s_i&timestamp=1670312510&unique_k=GN0LAJQ&vd_source=0b745a043df03b2811f9309ce3aaad13)
 
 ## 成为一座孤岛
