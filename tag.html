@@ -1,0 +1,95 @@
+---
+layout: null
+permalink: /tag.html
+title: Tag archive moved
+sitemap:
+  exclude: 'yes'
+---
+{%- comment -%}
+  Legacy redirect bridge.
+
+  Before the tag-system rewrite, every tag link pointed at
+  /tag.html?tag=<name>. That page rendered only the first 3 posts per tag and
+  relied on infinite-jekyll.js to reveal the matching block, so removing the JS
+  would have broken every bookmarked / indexed tag URL.
+
+  The tags now live at anchors inside the fully server-rendered /tags.html, so
+  this page exists purely to translate the old URLs:
+
+      /tag.html?tag=machine learning  ->  /tags.html#machine+learning
+
+  Matching is tolerant on purpose: case, percent-encoding, spaces, hyphens and
+  pluses all normalise to the same key, so any of the URL shapes that were in
+  circulation still resolve. Guests without JavaScript fall through to the
+  meta refresh. Excluded from sitemap.xml and marked noindex so search engines
+  consolidate onto /tags.html instead of indexing a redirect.
+{%- endcomment -%}{%- comment -%} Assigns tag_words; captured so it does not emit stray newlines before the doctype. {%- endcomment -%}{% capture _silent %}{% include get-site-tags.html %}{% endcapture %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Redirecting to the tag archive</title>
+<link rel="canonical" href="/tags.html">
+<meta http-equiv="refresh" content="1; url=/tags.html">
+<style>
+  :root { color-scheme: light dark; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font-family: Iowan Old Style, Georgia, Songti SC, serif;
+    background: #FCFBF8; color: #1B1917;
+  }
+  .redirect { max-width: 34rem; padding: 2rem; text-align: center; }
+  .redirect h1 { font-size: 1.25rem; font-weight: 400; letter-spacing: .01em; margin: 0 0 .75rem; }
+  .redirect p { font-size: .95rem; line-height: 1.7; color: #57534E; margin: 0; }
+  .redirect a { color: #9A3412; text-decoration: none; border-bottom: 1px solid rgba(154,52,18,.35); }
+  .redirect a:hover { border-bottom-color: #9A3412; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #141312; color: #E7E5E4; }
+    .redirect p { color: #A8A29E; }
+    .redirect a { color: #E08A5F; border-bottom-color: rgba(224,138,95,.35); }
+    .redirect a:hover { border-bottom-color: #E08A5F; }
+  }
+</style>
+</head>
+<body>
+  <div class="redirect">
+    <h1>这个标签页已经搬家了</h1>
+    <p>正在跳转到新的标签归档页。如果没有自动跳转，请前往 <a href="/tags.html">/tags.html</a>。</p>
+  </div>
+<script>
+(function () {
+  var TAGS = [
+    {% assign last_index = tag_words.size | minus: 1 %}{% for item in (0..tag_words.size) %}{% unless forloop.last %}{% capture w %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+    { "name": {{ w | jsonify }}, "anchor": {{ w | cgi_escape | jsonify }} }{% if item < last_index %},{% endif %}{% endunless %}{% endfor %}
+  ];
+
+  function normalize(value) {
+    var text = String(value == null ? "" : value);
+    try { text = decodeURIComponent(text.replace(/\+/g, " ")); } catch (err) { /* malformed input stays as-is */ }
+    return text.toLowerCase().replace(/[\s_–—-]+/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  var target = "/tags.html";
+  var requested = null;
+
+  if (typeof URLSearchParams === "function") {
+    requested = new URLSearchParams(window.location.search).get("tag");
+  }
+
+  if (requested) {
+    var key = normalize(requested);
+    for (var i = 0; i < TAGS.length; i++) {
+      if (normalize(TAGS[i].name) === key) {
+        target = "/tags.html#" + TAGS[i].anchor;
+        break;
+      }
+    }
+  }
+
+  window.location.replace(target);
+})();
+</script>
+</body>
+</html>
