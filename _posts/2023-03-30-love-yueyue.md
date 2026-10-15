@@ -8,4 +8,5 @@ img: posts/20230330/post1-header.png
 tags: [love]
 author: MY Chen
 description: I love YueYue
+lang: zh
 ---

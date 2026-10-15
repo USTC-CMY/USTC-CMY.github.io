@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Block Jekyll's internal build directories from being indexed
+Disallow: /node_modules/
+Disallow: /assets/css/sass/
+
+Sitemap: https://ustc-cmy.github.io/sitemap.xml

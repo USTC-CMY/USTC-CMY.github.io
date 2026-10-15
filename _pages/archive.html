@@ -2,19 +2,25 @@
 layout: menu-page
 title: Archive
 permalink: archive:output_ext
-infinite: yes
 ---
 {% include calculate_relative_base.html %}
 
 <div class="archive tag-master">
-	<form class="search-form inline">
+	<h1>All posts</h1>
+	<form class="search-form inline" role="search">
 		<div id="search-container">
-			<input type="text" id="search-input" class="search" placeholder="Search">
+			<label class="screen-reader-text" for="search-input">Search posts</label>
+			<input type="text" id="search-input" class="search" placeholder="Search" autocomplete="off">
 		</div>
 	</form>
 	<ul id="results-container" class="results-search"></ul>
 	<div class="post-list">
-	{% for post in site.posts limit: 3 %}
+	{%- comment -%}
+	  Every post is rendered into the HTML. The original template listed only the
+	  first 3 and pulled the rest in with JS via all-posts.json + infinite-jekyll.js,
+	  which left the remaining posts invisible to search engines.
+	{%- endcomment -%}
+	{% for post in site.posts %}
 		<div class="post">
 			{% include remove_double_slash.html %}
 			<a class="post-list-title" href="{{ post_url }}">{{ post.title }}</a>
@@ -26,4 +32,3 @@ infinite: yes
 	{% endfor %}
 	</div>
 </div>
-{% include spinner.html %}

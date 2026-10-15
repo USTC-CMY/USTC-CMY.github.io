@@ -1,12 +1,19 @@
 # Site settings
 title: MYChen's Blog
-description: 'record' # this means to ignore newlines until "baseurl:"
+description: 'Notes on machine learning, neural networks, and coding in Python.'
 permalink: ':title:output_ext'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://ustc-cmy.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-logo: "/assets/img/branding/MVM-logo-full.svg"
-logo-icon: "/assets/img/branding/MVM-symbol.svg"
-logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
+logo: "/assets/img/branding/wordmark.png"
+logo-icon: "/assets/img/branding/symbol.png"
+logo-icon-SEO: "/assets/img/branding/symbol.png" # must be a non SVG file
+logo-dark: "/assets/img/branding/wordmark-dark.png"
+
+# Default social/preview image used when a page has no `img` in its front matter
+default_image: "/assets/img/branding/symbol.png"
+
+# Keywords used in meta tags when a page has no tags
+keywords: "machine learning, neural networks, python, deep learning, coding"
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
@@ -20,7 +27,6 @@ logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG f
 # the browser is closed or not)
 night_mode: "auto"
 
-logo-dark: "/assets/img/branding/MVM-logo-full-dark.svg"
 highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code highlighter if needed
 
 # Author settings
@@ -30,17 +36,22 @@ about-author:  USTC, Master
 
 # Contact links
 email: my838616034@gmail.com # Add your Email address
-phone: 15895965076 # Add your Phone number
 website: https://ustc-cmy.github.io # Add your website
 github: USTC-CMY # Add your Github handle
 
 
 # Newsletter
-mailchimp: "https://github.us1.list-manage.com/subscribe/post?u=8ece198b3eb260e6838461a60&amp;id=397d90b5f4"
+# The original theme shipped with the template author's Mailchimp account here.
+# That has been removed: any subscriber would have been added to a stranger's
+# mailing list, and the page loaded their tracking script. Subscriptions are now
+# handled by the RSS feed (feed.xml), rendered as a card under each post.
 
 # Tracker
-analytics: G-R8SZS2YBZK
-fbadmin: ar.maybach
+# NOTE: verify this is YOUR GA4 property. The upstream theme hard-coded
+# G-4CVW6NPXTX in _includes/analytics.html, which suggests it belongs to the
+# theme author. If it is not yours, delete this line — analytics.html skips
+# rendering entirely when it is empty.
+analytics: G-4CVW6NPXTX
 
 # Paginate
 paginate: 6
@@ -51,15 +62,13 @@ extensions:
   mermaid_enable: true
 
 # Comments
-comments: utteranc  #[disqus, utteranc]
+comments: # disabled by default; set to utteranc and fill comments_opts.repo to enable
 comments_opts:
-  comments_curtain: yes # leave empty to show the disqus embed directly
-  repo: # The GitHub repo URL.  https://utteranc.es/
-  issue_term: # The GitHub issue label
-  label: # The GitHub comments label
-  theme: # The GitHub comment's there. e.g. github-dark
-  # Disqus
-  discus_identifier: # Add your discus identifier
+  comments_curtain: yes # leave empty to show the comment embed directly
+  repo: # e.g. USTC-CMY/USTC-CMY.github.io
+  issue_term:
+  label:
+  theme: preferred-color-scheme # e.g. github-light / github-dark / preferred-color-scheme
 
 # Build settings
 markdown: kramdown
@@ -77,13 +86,11 @@ category_archive:
   type: liquid
   path: /categories/
 
-sass:
-  style: compressed
-
+# styles are hand-written in assets/css/main.css — no Sass pipeline any more
 plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-sitemap
 
 include: [_pages]
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/"]
+exclude: ["node_modules", "vendor"]

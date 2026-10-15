@@ -2,13 +2,12 @@
 layout: post
 read_time: true
 show_date: true
-title:  Neural Network Optimization Methods and Algorithms
-date:   2023-04-01 10:16:00 -0600
+title: "Neural Network Optimization Methods and Algorithms"
+date: 2023-04-01 10:16:00 -0600
 description: Some neural network optimization algorithms mostly to implement momentum when doing back propagation.
 img: posts/20230401/nnet_optimization.jpg
 tags: [coding, machine learning, optimization, deep Neural networks]
 author: MY Chen
-github: amaynez/TicTacToe/blob/7bf83b3d5c10adccbeb11bf244fe0af8d9d7b036/entities/Neural_Network.py#L199
 mathjax: yes # leave empty or erase to prevent the mathjax javascript from loading
 toc: yes # leave empty or erase for no TOC
 ---

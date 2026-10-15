@@ -1,13 +1,21 @@
-<div class="newsletter" id="mc_embed_signup">
-  <h2 class="page-subtitle">Newsletter</h2>
+{% include calculate_relative_base.html %}
+{% include escape-404.html %}
+
+{%- comment -%}
+  Replaces the theme's original Mailchimp signup form.
+  The upstream form posted to the template author's Mailchimp account, so every
+  subscriber landed on a stranger's list. Subscriptions now go through the RSS
+  feed that jekyll-feed already generates at /feed.xml.
+{%- endcomment -%}
+<div class="newsletter" id="subscribe">
+  <h2 class="page-subtitle">Subscribe</h2>
   <div class="form-container">
-    <p>Subscribe here to get our latest updates</p>
-    <form action="{{ site.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <label class="screen-reader-text" for="mce-EMAIL">Email Address</label>
-      <div class="newsletter-box" id="mc_embed_signup_scroll">
-        <input type="email" name="EMAIL" placeholder="Email address" class="email-input" id="mce-EMAIL" required>
-        <input type="submit" value="Subscribe" name="subscribe" class="subscribe-btn" id="mc-embedded-subscribe">
-      </div>
-    </form>
+    <p>New posts are published to the RSS feed. No email needed.</p>
+    <div class="newsletter-box">
+      <a class="subscribe-btn" href="{{ relativebase }}feed.xml">RSS feed</a>
+      <a class="subscribe-btn ghost"
+         href="https://feedly.com/i/subscription/feed/{{ site.url }}/feed.xml"
+         target="_blank" rel="noopener">Add to Feedly</a>
+    </div>
   </div>
-</div> <!-- End Newsletter -->
+</div> <!-- End Subscribe -->

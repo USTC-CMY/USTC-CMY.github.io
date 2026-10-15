@@ -2,17 +2,16 @@
 layout: post
 read_time: true
 show_date: true
-title:  Conway's Game of Life 
-date:   2023-04-09 13:32:20 -0600
+title: "Conway's Game of Life"
+date: 2023-04-09 13:32:20 -0600
 description: Taking on the challenge of picking up coding again through interesting small projects, this time it is the turn of Conway's Game of Life.
 img: posts/20230409/Game_of_Life.jpg
 tags: [coding, python]
 author: MY Chen
-github: amaynez/GameOfLife/
 ---
 <p>I&nbsp;am lately trying to take on coding again. It had always been a part of my life since my early years when I&nbsp;learned to program a Tandy Color Computer at the age of 8, the good old days.</p>
 
-<img src="../assets/img/posts/20230409/300px-TRS-80_Color_Computer_3.jpg" alt="Tandy Color Computer TRS80 III"/><small>Tandy Color Computer TRS80 III</small>
+<img src="/assets/img/posts/20230409/300px-TRS-80_Color_Computer_3.jpg" alt="Tandy Color Computer TRS80 III" loading="lazy"><small>Tandy Color Computer TRS80 III</small>
 
 <p>Having already programed in Java, C# and of course BASIC, I&nbsp;thought it would be a great idea to learn Python since I&nbsp;have great interest in data science and machine learning, and those two topics seem to have an avid community within Python coders.</p>
 
@@ -22,7 +21,7 @@ github: amaynez/GameOfLife/
 
 <ul><li>If a cell has less than 2 neighbors, meaning contiguous alive cells, the cell will die of loneliness</li><li>If a cell has more than 3 neighbors, it will die of overpopulation</li><li>If an empty block has exactly 3 contiguous alive neighbors, a new cell will be born in that spot</li><li>If an alive cell has 2 or 3 alive neighbors, it continues to live</li></ul>
 
-<img src="../assets/img/posts/20230409/GameOfLife.gif" alt="Conway's rules for the Game of Life"/><small>Conway's rules for the Game of Life</small>
+<img src="/assets/img/posts/20230409/GameOfLife.gif" alt="Conway's rules for the Game of Life" loading="lazy"><small>Conway's rules for the Game of Life</small>
 
 <p>To make it more of a challenge I&nbsp;also decided to implement an <em>"sparse" </em>method of recording the game board, this means that instead of the typical 2d array representing the whole board, I&nbsp;will only record the cells which are alive. Saving a lot of memory space and processing time, while adding some spice to the challenge.</p>
 
@@ -39,7 +38,7 @@ def get_neighbors(self, cell):
     for x in range(-1, 2, 1):
         for y in range(-1, 2, 1):
             if not (x == 0 and y == 0):
-                if (0 &lt;= (cell[0] + x) &lt;= self.size_x) and (0 &lt;= (cell[1] + y) &lt;= self.size_y):
+                if (0 <= (cell[0] + x) <= self.size_x) and (0 <= (cell[1] + y) <= self.size_y):
                     neighbors.append((cell[0] + x, cell[1] + y))
     return neighbors
 ```
@@ -72,7 +71,7 @@ def next_state(self):
 
 ```python
 for cell in alive_neighbors:
-    if alive_neighbors[cell] &lt; 2 or alive_neighbors[cell] > 3:
+    if alive_neighbors[cell] < 2 or alive_neighbors[cell] > 3:
         self.alive_cells.discard(cell)
     
     elif alive_neighbors[cell] == 3:
